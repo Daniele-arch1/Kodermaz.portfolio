@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniele Kodermaz — Grafica &amp; Digital Marketing</title>
+<!-- La descrizione e' la riga che Google mostra sotto il titolo. Vale la pena
+     che contenga le parole che la gente cerca davvero: "grafico Gorizia",
+     "web designer Friuli", non solo il nome. -->
+<meta name="description" content="Daniele Kodermaz, grafico e web designer a Gorizia: logo, immagine coordinata e siti web su misura in Friuli-Venezia Giulia.">
+<meta name="author" content="Daniele Kodermaz">
+<meta name="theme-color" content="#0f1115">
+
+<!-- Anteprima quando il link viene condiviso (WhatsApp, LinkedIn, ecc.) -->
+<!-- IMPORTANTE: og:url e og:image devono essere indirizzi completi (https://...).
+     Aggiornali con il tuo dominio vero appena il sito è online. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://IL-TUO-DOMINIO-QUI/">
+<meta property="og:title" content="Daniele Kodermaz — Grafica &amp; Digital Marketing">
+<meta property="og:description" content="Daniele Kodermaz, grafico e web designer a Gorizia: logo, immagine coordinata e siti web su misura in Friuli-Venezia Giulia.">
+<meta property="og:image" content="https://IL-TUO-DOMINIO-QUI/img/daniele.webp">
+<meta property="og:image:width" content="1087">
+<meta property="og:image:height" content="1447">
+<meta property="og:image:alt" content="Ritratto di Daniele Kodermaz">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Daniele Kodermaz — Grafica &amp; Digital Marketing">
+<meta name="twitter:description" content="Daniele Kodermaz, grafico e web designer a Gorizia: logo, immagine coordinata e siti web su misura in Friuli-Venezia Giulia.">
+<meta name="twitter:image" content="https://IL-TUO-DOMINIO-QUI/img/daniele.webp">
+
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<!-- I caratteri stanno nella cartella fonts/: nessuna richiesta a Google, il
+     sito ha lo stesso aspetto per tutti. I due file piu' usati partono subito. -->
+<link rel="preload" as="font" type="font/woff2" href="fonts/sora-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin.woff2" crossorigin>
+<link rel="stylesheet" href="css/caratteri.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a href="#hero" class="skip-link">Vai al contenuto</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo"><img src="img/logo-dk.png" alt="Daniele Kodermaz" width="395" height="194"></a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Apri il menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="mainNav" aria-label="Navigazione principale">
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#progetti">Progetti</a>
+      <a href="#strumenti">Strumenti</a>
+      <a href="#contatti" class="btn btn-small nav-cta">Contattami</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO: modifica qui titolo e frase di apertura -->
+  <section id="hero" class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">Grafica &amp; Digital Marketing</p>
+      <h1>Ciao, sono Daniele Kodermaz.</h1>
+      <p class="hero-text">Ho studiato grafica e comunicazione, adesso creo siti web come questo.
+      Trasformo idee e obiettivi in comunicazioni visive semplici, coerenti e funzionali.
+      Qui trovi i miei lavori e progetti; per informazioni e contatti c'è "Contattami" qui sopra.</p>
+      <div class="hero-actions">
+        <a href="#progetti" class="btn btn-primary">Vedi i progetti</a>
+        <a href="#contatti" class="btn btn-outline">Contattami</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI SONO: modifica qui la tua bio -->
+  <section id="chi-sono" class="about">
+    <div class="container">
+      <p class="section-label reveal">01 — Chi sono</p>
+      <h2 class="reveal">Costruisco il mio portfolio, un progetto alla volta.</h2>
+
+      <div class="about-layout">
+
+        <!-- FOTO: per cambiarla sostituisci il file img/daniele.webp.
+             Se il file manca, la colonna sparisce da sola e il testo occupa tutto. -->
+        <figure class="about-photo reveal">
+          <img src="img/daniele.webp" alt="Ritratto di Daniele Kodermaz" width="1087" height="1447" decoding="async">
+        </figure>
+
+        <div class="about-copy">
+          <p class="about-text about-text-lead reveal">
+            Mi presento, sono Daniele Kodermaz. La mia carriera da graphic designer inizia con lo studio
+            di grafica e comunicazione. Successivamente ho fatto qualche progetto su richiesta per
+            conoscenti. La mia presenza sul web inizia con l'apertura di un account per fare live
+            streaming: durante quel periodo ho creato grafiche per il mio canale. Nel 2025 ho
+            partecipato a un corso online per la progettazione di siti web. Attualmente sto
+            sperimentando il mondo relativo all'IA per facilitare il mio lavoro.
+          </p>
+          <p class="about-text reveal">
+            Sto costruendo il mio portfolio attraverso progetti pratici, sperimentazione e formazione
+            continua. Il mio obiettivo è lavorare in un'azienda nel mio ambito di interesse e
+            continuare a sperimentare e imparare.
+          </p>
+
+          <!-- FORMAZIONE: le ore del corso GOL arrivano dal calendario, tramite
+               js/corso-gol.js. I valori qui sotto sono solo la riserva se quel file manca. -->
+          <ul class="edu-list">
+
+            <li class="edu-card edu-card-wip reveal" data-ore-fatte="0" data-ore-totali="245">
+              <div class="edu-head">
+                <h3>Corso GOL — Tecniche base di digital marketing</h3>
+                <span class="edu-badge edu-badge-wip">In corso</span>
+              </div>
+
+              <div class="edu-count">
+                <span class="edu-metric">
+                  <strong class="edu-done">0</strong>
+                  <span>ore fatte</span>
+                </span>
+                <span class="edu-metric edu-metric-left">
+                  <strong class="edu-left">245</strong>
+                  <span>ore che mancano</span>
+                </span>
+              </div>
+
+              <div class="edu-bar" role="progressbar" aria-valuemin="0" aria-valuemax="245" aria-valuenow="0" aria-label="Ore completate del corso GOL">
+                <span class="edu-bar-fill"></span>
+              </div>
+              <p class="edu-note"><span class="edu-percent">0%</span><span class="edu-note-testo"> del percorso completato — 245 ore in tutto</span></p>
+            </li>
+
+            <li class="edu-card reveal">
+              <div class="edu-head">
+                <h3>Diploma in grafica e comunicazione</h3>
+                <span class="edu-badge">Conseguito</span>
+              </div>
+            </li>
+
+            <li class="edu-card reveal">
+              <div class="edu-head">
+                <h3>Corso Figma web design</h3>
+                <span class="edu-badge">Completato</span>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGETTI: aggiungi qui nuovi progetti copiando un .project-card -->
+  <section id="progetti" class="projects">
+    <div class="container">
+      <p class="section-label reveal">02 — Progetti</p>
+      <h2 class="reveal">Cosa ho realizzato</h2>
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <div class="project-tag">Rebranding</div>
+          <h3>A.S.D. Revolution Sport</h3>
+          <p>Rebranding di una palestra: analisi delle recensioni dei clienti e sviluppo di circa
+          venti proposte di logo, con l'obiettivo di uno stile pulito e meno aggressivo capace di
+          comunicare che la palestra offre più del semplice fitness. Payoff proposto:
+          <em>"Più di una palestra"</em>.</p>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-tag">Web design</div>
+          <h3>Questo sito</h3>
+          <p>Il portfolio che stai guardando: progettato e costruito da zero, contenuti e struttura
+          pensati per comunicare in modo diretto chi sono e cosa so fare.</p>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-tag">App web</div>
+          <h3>Focus App</h3>
+          <p>Un timer per lavorare a sessioni, senza fronzoli: cicli di lavoro e pause, anello
+          di progresso, statistiche giornaliere e striscia dei giorni consecutivi. Costruita da
+          zero in HTML, CSS e JavaScript, senza librerie.</p>
+
+          <!-- L'app è online su GitHub Pages: si apre in una scheda nuova, così
+               chi la prova non perde il portfolio. Se cambi indirizzo, cambia qui. -->
+          <a class="project-link" href="https://daniele-arch1.github.io/focus-sprint0.2/index.html"
+             target="_blank" rel="noopener noreferrer">Prova l'app &rarr;</a>
+        </article>
+
+        <article class="project-card project-card-placeholder reveal">
+          <div class="project-tag">In arrivo</div>
+          <h3>Il prossimo progetto</h3>
+          <p>Nuovi lavori di grafica e comunicazione in arrivo a breve.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUMENTI: aggiungi/rimuovi voci copiando un .tool-card -->
+  <section id="strumenti" class="tools">
+    <div class="container">
+      <p class="section-label reveal">03 — Strumenti</p>
+      <h2 class="reveal">Programmi che utilizzo</h2>
+      <ul class="tools-grid">
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/chatgpt.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">ChatGPT</span>
+            <span class="tool-role">AI &amp; contenuti</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/claude.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Claude</span>
+            <span class="tool-role">AI &amp; contenuti</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/illustrator.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Illustrator</span>
+            <span class="tool-role">Grafica vettoriale</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/photoshop.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Photoshop</span>
+            <span class="tool-role">Fotoritocco</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/premiere.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Premiere</span>
+            <span class="tool-role">Montaggio video</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/figma.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Figma</span>
+            <span class="tool-role">UI &amp; web design</span>
+          </span>
+        </li>
+        <li class="tool-card reveal">
+          <span class="tool-mark">
+            <img src="img/canva.svg" alt="" width="22" height="22">
+          </span>
+          <span class="tool-body">
+            <span class="tool-name">Canva</span>
+            <span class="tool-role">Contenuti social</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTATTI: modifica qui email e link social -->
+  <section id="contatti" class="contact">
+    <div class="container contact-inner">
+      <p class="section-label reveal">04 — Contatti</p>
+      <h2 class="reveal">Parliamone.</h2>
+      <p class="contact-text reveal">Hai un progetto in mente o cerchi una mano con grafica e comunicazione? Scrivimi.</p>
+
+      <div class="contact-box reveal">
+
+        <!-- MODULO: i messaggi passano da Formspree e arrivano nella casella email.
+             action e method restano scritti nell'HTML: se il JavaScript è spento,
+             il modulo funziona lo stesso con l'invio classico del browser. -->
+        <form class="modulo" id="modulo" action="https://formspree.io/f/xgaepkro" method="POST">
+
+          <div class="campo">
+            <label for="campoNome">Nome</label>
+            <input id="campoNome" name="nome" type="text" required autocomplete="name"
+                   placeholder="Come ti chiami">
+          </div>
+
+          <div class="campo">
+            <label for="campoEmail">Email</label>
+            <input id="campoEmail" name="email" type="email" required autocomplete="email"
+                   placeholder="Dove ti rispondo">
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="campoTelefono">Telefono <span class="campo-extra">facoltativo</span></label>
+            <input id="campoTelefono" name="telefono" type="tel" autocomplete="tel"
+                   placeholder="Se preferisci una chiamata">
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="campoMessaggio">Messaggio</label>
+            <textarea id="campoMessaggio" name="messaggio" rows="5" required
+                      placeholder="Raccontami cosa ti serve"></textarea>
+          </div>
+
+          <!-- Trappola per i robot: una persona non la vede e non la compila -->
+          <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="campo-largo campo-privacy">
+            <input type="checkbox" id="campoPrivacy" name="privacy" required value="accettata">
+            <label for="campoPrivacy">
+              Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>
+              e acconsento all'uso dei miei dati per essere ricontattato.
+            </label>
+          </div>
+
+          <div class="modulo-piede campo-largo">
+            <button type="submit" class="btn btn-primary btn-large" id="moduloInvia">
+              Invia il messaggio
+            </button>
+            <p class="modulo-stato" id="moduloStato" role="status" aria-live="polite"></p>
+          </div>
+
+          <p class="modulo-nota campo-largo" id="moduloNota" hidden>
+            Protetto da reCAPTCHA: valgono la
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+            e i <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Termini</a>
+            di Google.
+          </p>
+        </form>
+
+      </div>
+
+      <!-- Apre Gmail in una scheda nuova, con il destinatario già compilato:
+           chi clicca resta comunque sul sito. -->
+      <p class="contact-alt reveal">Preferisci scrivere tu?
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=kodermazdaniele%40gmail.com&amp;su=Contatto%20dal%20sito"
+           target="_blank" rel="noopener noreferrer">Scrivimi direttamente</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Daniele Kodermaz. Tutti i diritti riservati.
+      &middot; <a href="privacy.html">Privacy e cookie</a></p>
+
+    <!-- Solo il logo: il nome del profilo sta nell'aria-label, per chi non vede l'icona -->
+    <a class="social" href="https://www.instagram.com/ilkoddy" target="_blank"
+       rel="noopener noreferrer" aria-label="Instagram, @ilkoddy" title="@ilkoddy">
+      <img src="img/loghi/instagram.svg" alt="" width="20" height="20">
+    </a>
+
+    <!-- Bandiera e sigla della lingua attiva: si clicca e si apre la tendina -->
+    <div data-selettore-lingua></div>
+  </div>
+</footer>
+
+<!-- BARRA PRIVACY: compare in basso a sinistra finché non si sceglie. -->
+<div class="consenso" id="consenso" role="dialog" aria-modal="false"
+     aria-labelledby="consensoTitolo" hidden>
+  <p class="consenso-titolo" id="consensoTitolo">Privacy e cookie</p>
+  <p class="consenso-testo">
+    Questo sito non usa cookie di profilazione e non ti traccia. Raccolgo solo quello che
+    scrivi nel modulo di contatto per poterti rispondere al meglio.
+  </p>
+  <p class="consenso-link"><a href="privacy.html">Vedi tutti i dettagli della privacy</a></p>
+  <div class="consenso-azioni">
+    <button type="button" class="btn btn-small btn-outline" id="consensoRifiuta">Rifiuta</button>
+    <button type="button" class="btn btn-small btn-primary" id="consensoAccetta">Accetta</button>
+  </div>
+  <!-- Scelta della lingua prima ancora di entrare nel sito -->
+  <div class="consenso-lingua">
+    <span>Lingua</span>
+    <div data-selettore-lingua></div>
+  </div>
+</div>
+
+<script src="js/lingua.js"></script>
+<script src="js/consenso.js"></script>
+<script src="js/corso-gol.js"></script>
+<script src="js/modulo.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

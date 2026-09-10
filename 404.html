@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagina non trovata &mdash; Daniele Kodermaz</title>
+<meta name="description" content="La pagina che cercavi non esiste. Torna al portfolio di Daniele Kodermaz.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f1115">
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<!-- Percorsi che partono da "/" e non da qui: la pagina di errore puo' comparire
+     a qualsiasi indirizzo sbagliato, anche dentro una sottocartella che non esiste,
+     e con i percorsi relativi si ritroverebbe senza grafica. -->
+<link rel="stylesheet" href="/css/caratteri.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<a href="#contenuto" class="skip-link">Vai al contenuto</a>
+
+<header class="site-header header-semplice">
+  <div class="container header-inner">
+    <a href="/index.html" class="logo"><img src="/img/logo-dk.png" alt="Daniele Kodermaz" width="395" height="194"></a>
+    <nav class="nav" aria-label="Navigazione principale">
+      <a href="/index.html#chi-sono">Chi sono</a>
+      <a href="/index.html#progetti">Progetti</a>
+      <a href="/index.html#strumenti">Strumenti</a>
+      <a href="/index.html#contatti" class="btn btn-small nav-cta">Contattami</a>
+    </nav>
+  </div>
+</header>
+
+<main class="pagina" id="contenuto">
+  <div class="container pagina-testo">
+
+    <p class="section-label">Errore 404</p>
+    <h1>Questa pagina non c'&egrave;.</h1>
+    <p class="pagina-guida">Forse l'indirizzo &egrave; stato scritto male, o la pagina si
+    chiamava in un altro modo. Da qui torni dove volevi andare.</p>
+
+    <div class="hero-actions">
+      <a href="/index.html" class="btn btn-primary">Torna alla home</a>
+      <a href="/index.html#contatti" class="btn btn-outline">Scrivimi</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Daniele Kodermaz. Tutti i diritti riservati.
+      &middot; <a href="/privacy.html">Privacy e cookie</a></p>
+
+    <a class="social" href="https://www.instagram.com/ilkoddy" target="_blank"
+       rel="noopener noreferrer" aria-label="Instagram, @ilkoddy" title="@ilkoddy">
+      <img src="/img/loghi/instagram.svg" alt="" width="20" height="20">
+    </a>
+
+    <div data-selettore-lingua></div>
+  </div>
+</footer>
+
+<script src="/js/lingua.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

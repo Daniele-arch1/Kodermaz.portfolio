@@ -1,0 +1,11 @@
+Caratteri usati dal sito, scaricati da Google Fonts il 10 settembre 2026.
+
+Inter  - SIL Open Font License 1.1 - https://fonts.google.com/specimen/Inter
+Sora   - SIL Open Font License 1.1 - https://fonts.google.com/specimen/Sora
+
+La licenza OFL permette di ospitare i file sul proprio sito e di usarli
+liberamente, anche per lavori commerciali. Unico vincolo: i file non si
+vendono da soli e la licenza va conservata insieme a loro. Per questo il
+file resta qui dentro.
+
+Testo completo della licenza: https://openfontlicense.org

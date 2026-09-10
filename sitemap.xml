@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  L'elenco delle pagine da mostrare nei risultati di ricerca.
+  C'e' solo la home: privacy.html e 404.html sono marcate "noindex" apposta,
+  quindi non vanno elencate qui.
+
+  Da aggiornare a mano in due casi:
+  - quando il sito prende un indirizzo vero (sostituisci IL-TUO-DOMINIO-QUI);
+  - quando cambi i contenuti in modo importante (aggiorna lastmod).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://IL-TUO-DOMINIO-QUI/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

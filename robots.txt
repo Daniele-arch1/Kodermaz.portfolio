@@ -1,0 +1,13 @@
+# Cosa possono guardare i motori di ricerca.
+# Il sito e' piccolo e pubblico: si legge tutto.
+
+User-agent: *
+Allow: /
+
+# La pagina della privacy e quella di errore chiedono gia' da sole di non
+# finire nei risultati (meta robots noindex), quindi qui non serve altro.
+
+# Appena il sito ha un indirizzo vero, sostituisci IL-TUO-DOMINIO-QUI qui
+# sotto e nel file sitemap.xml. Finche' resta il segnaposto questa riga viene
+# semplicemente ignorata: non fa danni.
+Sitemap: https://IL-TUO-DOMINIO-QUI/sitemap.xml

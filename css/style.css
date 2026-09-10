@@ -1,0 +1,1037 @@
+/* ============ TOKEN DI BASE ============ */
+:root{
+  --bg: #0f1115;
+  --bg-alt: #15181f;
+  --card: #1a1e27;
+  --border: #262b36;
+  --text: #eaecef;
+  --text-dim: #9aa1ad;
+  /* Rosso Ferrari: cambia queste righe e cambia l'accento di tutto il sito.
+     --accent e' il rosso acceso, per testi e bordi sul fondo scuro.
+     --accent-pieno e' un rosso piu' profondo, usato solo dove il rosso fa da
+     sfondo: con il testo bianco sopra si legge molto meglio (6,3:1 invece di 3,8:1). */
+  --accent: #ff2800;
+  --accent-dim: #ff280033;
+  --accent-pieno: #c40000;
+  --su-accento: #ffffff;
+  --radius: 14px;
+  --max-width: 1080px;
+  /* I caratteri di Google arrivano solo con il consenso: dietro ci sono quelli
+     di sistema, cosi' il sito resta leggibile anche se il visitatore rifiuta. */
+  --font-heading: 'Sora', 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+
+ul{ list-style: none; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img{ max-width:100%; display:block; }
+
+.container{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3{
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+a{ color: inherit; text-decoration: none; }
+
+:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Link di salto: compare solo navigando con la tastiera */
+.skip-link{
+  position: absolute;
+  left: 24px;
+  top: -60px;
+  z-index: 100;
+  background: var(--accent-pieno);
+  color: var(--su-accento);
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  transition: top .15s ease;
+}
+.skip-link:focus{ top: 12px; }
+
+.section-label{
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+section h2{
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+
+/* ============ BOTTONI ============ */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  /* font e sfondo espliciti: su <button> il browser ne mette di suoi */
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  background: transparent;
+  transition: transform .15s ease, opacity .15s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn:hover{ transform: translateY(-2px); }
+
+.btn-primary{
+  background: var(--accent-pieno);
+  color: var(--su-accento);
+}
+.btn-outline{
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-outline:hover{ border-color: var(--accent); }
+
+.btn-small{ padding: 10px 20px; font-size: 14px; }
+.btn-large{ padding: 18px 36px; font-size: 16px; }
+
+/* ============ HEADER ============ */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15,17,21,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* Il marchio DK al posto del nome scritto */
+.logo{
+  display: inline-flex;
+  align-items: center;
+}
+.logo img{
+  width: auto;
+  height: 30px;
+  transition: opacity .15s ease;
+}
+.logo:hover img{ opacity: .8; }
+
+.nav{
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav a{
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dim);
+  transition: color .15s ease;
+}
+.nav a:hover{ color: var(--text); }
+.nav a.is-active{ color: var(--text); }
+
+/* Il "Contattami" e' l'ultima voce del menu: pulsante su desktop e su mobile */
+.nav a.nav-cta{
+  color: var(--su-accento);
+  background: var(--accent-pieno);
+}
+
+/* Pulsante hamburger: compare solo su mobile */
+.nav-toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-toggle span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text);
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* ============ HERO ============ */
+.hero{
+  padding: 120px 0 100px;
+  background:
+    radial-gradient(circle at 15% 20%, var(--accent-dim), transparent 45%),
+    var(--bg);
+}
+
+.hero-inner{ max-width: 680px; }
+
+.eyebrow{
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.hero h1{
+  font-size: clamp(36px, 6vw, 56px);
+  margin-bottom: 20px;
+}
+
+.hero-text{
+  font-size: 18px;
+  color: var(--text-dim);
+  margin-bottom: 36px;
+  max-width: 540px;
+}
+
+.hero-actions{ display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ============ CHI SONO ============ */
+.about{ padding: 90px 0; background: var(--bg-alt); }
+
+/* Foto a sinistra, testo e formazione a destra */
+.about-layout{
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 8px;
+}
+/* Se la foto manca, il testo si prende tutta la larghezza */
+.about-layout.senza-foto{ grid-template-columns: 1fr; }
+
+.about-photo{
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.about-photo img{
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+/* Sfumatura calda in basso, per legare la foto al resto della pagina */
+.about-photo::after{
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(15,17,21,.65), transparent);
+  pointer-events: none;
+}
+
+.about-text{
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+
+/* Primo paragrafo: e' la presentazione, pesa un po' di piu' */
+.about-text-lead{
+  font-size: 18px;
+  color: var(--text);
+}
+
+.about-copy .about-text:last-of-type{ margin-bottom: 36px; }
+
+/* ============ FORMAZIONE ============ */
+.edu-list{
+  display: grid;
+  gap: 16px;
+}
+
+.edu-card{
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  transition: border-color .15s ease;
+}
+.edu-card:hover{ border-color: var(--accent); }
+
+.edu-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.edu-card h3{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.edu-badge{
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.edu-badge-wip{
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: transparent;
+}
+
+/* Il corso in corso: conteggio ore + avanzamento */
+.edu-card-wip{ border-color: var(--accent-dim); }
+
+.edu-count{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin: 18px 0 14px;
+}
+
+.edu-metric{ display: flex; flex-direction: column; }
+
+.edu-metric strong{
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.edu-metric-left strong{ color: var(--text); }
+
+.edu-metric span{
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.edu-bar{
+  height: 8px;
+  border-radius: 999px;
+  background: #0f1115;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.edu-bar-fill{
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #ff7f6b);
+  transition: width 1.2s ease;
+}
+
+.edu-note{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.edu-percent{ color: var(--text); font-weight: 600; }
+
+/* ============ PROGETTI ============ */
+.projects{ padding: 90px 0; }
+
+.projects-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.project-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.project-card:hover{ border-color: var(--accent); transform: translateY(-4px); }
+
+.project-card-placeholder{
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+.project-tag{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.project-card h3{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.project-card p{
+  font-size: 15px;
+  color: var(--text-dim);
+}
+
+/* Il link per provare un progetto: si accende insieme alla card */
+.project-link{
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.project-link:hover{ opacity: .85; }
+
+/* Segnaposto: il progetto c'è, l'indirizzo non ancora */
+.project-link-vuoto{
+  color: var(--text-dim);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: default;
+}
+.project-link-vuoto:hover{ opacity: 1; }
+
+/* ============ STRUMENTI ============ */
+.tools{ padding: 90px 0; background: var(--bg-alt); }
+
+.tools-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.tool-card{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.tool-card:hover{ border-color: var(--accent); transform: translateY(-2px); }
+
+/* Logo del programma: i file stanno in img/loghi, nessuna richiesta esterna */
+.tool-mark{
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.tool-mark img{
+  width: 22px;
+  height: 22px;
+  opacity: .92;
+}
+
+.tool-card:hover .tool-mark{ border-color: var(--accent); }
+
+.tool-body{ display: flex; flex-direction: column; min-width: 0; }
+
+.tool-name{ font-size: 15px; font-weight: 600; }
+
+.tool-role{ font-size: 13px; color: var(--text-dim); }
+
+/* ============ CONTATTI ============ */
+.contact{ padding: 110px 0; }
+
+.contact-inner{ text-align: center; max-width: 560px; margin: 0 auto; }
+.contact-inner h2{ margin: 0 auto 16px; }
+.contact-inner .section-label{ }
+
+.contact-text{
+  font-size: 17px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+
+.contact-alt{
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.contact-alt a{
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ============ MODULO DI CONTATTO ============ */
+.contact-box{
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.modulo{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: left;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.campo{ display: flex; flex-direction: column; gap: 7px; }
+.campo-largo{ grid-column: 1 / -1; }
+
+.campo label{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campo-extra{
+  font-weight: 400;
+  color: var(--text-dim);
+}
+
+/* :not(.sr-only) tiene fuori la trappola anti-robot, che deve restare invisibile */
+.modulo input[type="text"]:not(.sr-only),
+.modulo input[type="email"],
+.modulo input[type="tel"],
+.modulo textarea{
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color .15s ease;
+}
+.modulo textarea{ resize: vertical; min-height: 110px; line-height: 1.6; }
+
+.modulo input::placeholder,
+.modulo textarea::placeholder{ color: var(--text-dim); }
+
+.modulo input:focus,
+.modulo textarea:focus{ border-color: var(--accent); outline: none; }
+.modulo input:focus-visible,
+.modulo textarea:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Consenso privacy: obbligatorio prima di inviare */
+.campo-privacy{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 2px;
+}
+.campo-privacy input{
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  accent-color: var(--accent-pieno);
+  cursor: pointer;
+}
+/* Anche il testo accanto fa da bersaglio: sul telefono il quadratino da solo
+   sarebbe troppo piccolo da centrare con il dito. */
+.campo-privacy label{ cursor: pointer; }
+.campo-privacy label{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+.campo-privacy a{
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.modulo-piede{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.modulo-piede .btn{ width: 100%; }
+
+.modulo-stato{
+  font-size: 14px;
+  color: var(--text-dim);
+  text-align: center;
+  min-height: 1px;
+}
+.modulo-stato-ok{ color: #4ade80; }
+.modulo-stato-errore{ color: var(--accent); }
+
+.modulo-nota{
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+}
+.modulo-nota a{ color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ============ PAGINE DI TESTO (privacy) ============ */
+.pagina{ padding: 70px 0 90px; }
+
+.pagina-testo{ max-width: 720px; }
+
+.pagina-testo h1{
+  font-size: clamp(30px, 5vw, 42px);
+  margin-bottom: 18px;
+}
+
+.pagina-guida{
+  font-size: 17px;
+  color: var(--text);
+  margin-bottom: 40px;
+}
+
+.pagina-testo h2{
+  font-size: 20px;
+  margin: 36px 0 12px;
+}
+
+.pagina-testo p,
+.pagina-testo li{
+  font-size: 15.5px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.pagina-testo p + p{ margin-top: 12px; }
+
+.pagina-testo ul{
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.pagina-testo strong{ color: var(--text); }
+
+.pagina-testo a{
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Un bottone dentro una pagina di testo resta un bottone. Senza queste due
+   righe la regola qui sopra gli darebbe il rosso dei link, e su un bottone
+   rosso pieno il testo diventerebbe illeggibile. */
+.pagina-testo a.btn{ color: var(--text); text-decoration: none; }
+.pagina-testo a.btn-primary{ color: var(--su-accento); }
+
+.pagina-stato{
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.pagina-data{
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.site-footer a{
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-footer a:hover{ color: var(--text); }
+
+/* ============ BARRA PRIVACY E COOKIE ============ */
+.consenso{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 90;
+  width: min(360px, calc(100vw - 40px));
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  animation: consenso-entra .25s ease;
+}
+
+@keyframes consenso-entra{
+  from{ opacity: 0; transform: translateY(12px); }
+  to{ opacity: 1; transform: none; }
+}
+
+.consenso-titolo{
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.consenso-testo{
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.consenso-testo a{
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.consenso-link{
+  margin-top: 10px;
+  font-size: 13px;
+}
+.consenso-link a{
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.consenso-link a:hover{ opacity: .85; }
+
+.consenso-azioni{
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.consenso-azioni .btn{ flex: 1; }
+
+/* ============ SCELTA DELLA LINGUA ============ */
+.selettore-lingua{ position: relative; }
+
+.lingua-attuale{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.lingua-attuale:hover{ color: var(--text); border-color: var(--accent); }
+
+.bandiera{
+  width: 19px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+/* La tendina si apre verso l'alto: il selettore sta in fondo alla pagina */
+.lingua-tendina{
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  z-index: 95;
+  min-width: 170px;
+  padding: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
+}
+
+.lingua-voce{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 10px;
+  cursor: pointer;
+  text-align: left;
+}
+.lingua-voce:hover{ background: var(--bg-alt); }
+.lingua-voce.is-scelta{ color: var(--accent); font-weight: 600; }
+
+/* Dentro la barra privacy sta su una riga sua, in basso */
+.consenso-lingua{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.consenso-lingua .lingua-tendina{ bottom: auto; top: calc(100% + 8px); }
+
+/* Testo solo per i lettori di schermo */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============ FOOTER ============ */
+.site-footer{
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p{
+  font-size: 14px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Riga del footer: testo al centro, Instagram accanto */
+.footer-inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social{
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.social img{
+  width: 20px;
+  height: 20px;
+  opacity: .75;
+  transition: opacity .15s ease;
+}
+.social:hover{ border-color: var(--accent); transform: translateY(-2px); }
+.social:hover img{ opacity: 1; }
+
+/* ============ COMPARSA ALLO SCROLL ============ */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: none;
+}
+/* Le card mantengono l'hover rapido anche con la comparsa attiva */
+.project-card.reveal, .tool-card.reveal{
+  transition: border-color .15s ease, transform .15s ease, opacity .5s ease;
+}
+.project-card-placeholder.reveal.is-visible{ opacity: .6; }
+
+/* ============ BERSAGLI PER IL DITO ============ */
+/* Un link alto 20px si centra bene col mouse, molto meno col pollice: la
+   misura consigliata e' almeno 44 x 44 px. Qui non si ingrandisce niente a
+   vista. Sotto ai link piu' piccoli si stende un rettangolo invisibile alto
+   44px che raccoglie il tocco, e questo vale solo dove si tocca davvero
+   (pointer: coarse): con il mouse il sito resta identico a prima.
+
+   Non si tocca invece la punteggiatura dei link dentro ai testi lunghi
+   (informativa privacy): li' i link stanno uno accanto all'altro e i
+   rettangoli si ruberebbero il tocco a vicenda. */
+@media (pointer: coarse){
+  .project-link,
+  .contact-alt a,
+  .site-footer p a,
+  .consenso-link a{
+    position: relative;
+  }
+  .project-link::after,
+  .contact-alt a::after,
+  .site-footer p a::after,
+  .consenso-link a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+
+  /* Instagram: il cerchio e' 38px, gli mancano pochi pixel */
+  .social{ width: 44px; height: 44px; }
+
+  /* La spunta della privacy resta grande com'era, ma tutta la riga di testo
+     accanto fa da bersaglio: cliccandola la casella si spunta lo stesso. */
+  .campo-privacy label{ padding: 11px 0; }
+  .campo-privacy input{ margin-top: 13px; }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 720px){
+  .nav-toggle{ display: flex; }
+
+  .nav{
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px 24px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav.is-open{ display: flex; }
+
+  .nav a{
+    width: 100%;
+    padding: 12px 0;
+    font-size: 17px;
+  }
+  .nav a.nav-cta{
+    margin-top: 8px;
+    padding: 14px 24px;
+  }
+
+  .hero{ padding: 90px 0 70px; }
+  .about, .projects, .tools{ padding: 60px 0; }
+  .contact{ padding: 80px 0; }
+
+  .about-layout{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .about-photo{ max-width: 280px; }
+  .about-photo img{ aspect-ratio: 1 / 1; }
+
+  .edu-head{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .edu-count{ gap: 20px; }
+
+  .modulo{
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  /* Pagine interne (privacy, errore 404): non hanno il pulsante del menu,
+     quindi il menu a tendina non si potrebbe aprire e i collegamenti
+     sparirebbero. Qui restano in vista, su una riga che va a capo da sola. */
+  .header-semplice .nav{
+    position: static;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 18px;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+  .header-semplice .nav a{
+    width: auto;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .header-semplice .nav a.nav-cta{
+    margin-top: 0;
+    padding: 10px 18px;
+  }
+  .header-semplice .header-inner{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Rispetta chi preferisce meno animazioni */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal{ opacity: 1; transform: none; }
+}
