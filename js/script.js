@@ -8,13 +8,14 @@ const nav = document.getElementById("mainNav");
 function chiudiMenu() {
   nav.classList.remove("is-open");
   toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-label", "Apri il menu");
+  toggle.setAttribute("aria-label", LINGUA.t("menuApri"));
 }
 
 toggle.addEventListener("click", () => {
   const aperto = nav.classList.toggle("is-open");
   toggle.setAttribute("aria-expanded", String(aperto));
-  toggle.setAttribute("aria-label", aperto ? "Chiudi il menu" : "Apri il menu");
+  // l'etichetta segue la lingua scelta: prima restava sempre in italiano
+  toggle.setAttribute("aria-label", LINGUA.t(aperto ? "menuChiudi" : "menuApri"));
 });
 
 // Cliccando una voce il menu si richiude
@@ -29,6 +30,23 @@ document.addEventListener("keydown", (e) => {
     toggle.focus();
   }
 });
+
+// Un tocco fuori dal menu lo richiude. Quel tocco serve solo a chiudere: non
+// apre anche il link o il pulsante che c'era sotto, altrimenti chi tocca a caso
+// per chiudere si ritroverebbe in un'altra pagina senza volerlo.
+// Si ascolta in fase di "cattura" (il true in fondo), cosi' il tocco viene
+// intercettato prima che arrivi all'elemento sotto il dito.
+document.addEventListener(
+  "click",
+  (e) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(e.target) || toggle.contains(e.target)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    chiudiMenu();
+  },
+  true
+);
 
 // Tornando a schermo largo il menu non deve restare "aperto"
 window.addEventListener("resize", () => {

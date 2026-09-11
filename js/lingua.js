@@ -167,6 +167,12 @@ var LINGUA = (function () {
     "Rivedi le preferenze": "Review your preferences",
     "Ultimo aggiornamento: 10 settembre 2026.": "Last updated: 10 September 2026.",
 
+    // progetti: il sito di A.S.D. Revolution Sport
+    "Sito web per A.S.D. Revolution Sport": "Website for A.S.D. Revolution Sport",
+    "Il sito della palestra, nato dopo il rebranding: sala pesi e cardio, macchinari, corsi ed eventi, orari e indicazioni per arrivare, con le foto degli spazi e i collegamenti ai social. Porta online lo stesso messaggio del logo:":
+      "The gym's website, built after the rebranding: weights and cardio rooms, equipment, classes and events, opening hours and directions, with photos of the space and links to its social channels. It takes the logo's message online:",
+    "Visita il sito →": "Visit the site →",
+
     // reCAPTCHA e servizi esterni (pagina privacy)
     "Per tenere lontani i messaggi automatici il modulo può usare":
       "To keep automated messages away, the form may use",
@@ -213,6 +219,9 @@ var LINGUA = (function () {
       erroreConfigurazione: "Il modulo in questo momento non riesce a ricevere messaggi per un problema di impostazioni, mio e non tuo. Scrivimi a kodermazdaniele@gmail.com e ti rispondo lo stesso.",
       erroreServizio: "Il servizio che recapita i messaggi ha un problema temporaneo. Riprova tra poco, oppure scrivimi a kodermazdaniele@gmail.com",
       percorso: (p, t) => p + "% del percorso completato — " + t + " ore in tutto",
+      // etichetta del burger per chi usa un lettore di schermo (js/script.js)
+      menuApri: "Apri il menu",
+      menuChiudi: "Chiudi il menu",
     },
     en: {
       moduloAttesa: "Sending…",
@@ -225,6 +234,8 @@ var LINGUA = (function () {
       erroreConfigurazione: "The form can't receive messages right now because of a settings problem on my side, not yours. Write to kodermazdaniele@gmail.com and I'll reply all the same.",
       erroreServizio: "The service that delivers the messages has a temporary problem. Try again shortly, or write to kodermazdaniele@gmail.com",
       percorso: (p, t) => p + "% of the course completed — " + t + " hours in total",
+      menuApri: "Open the menu",
+      menuChiudi: "Close the menu",
     },
   };
 
