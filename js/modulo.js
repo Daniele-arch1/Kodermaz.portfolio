@@ -73,6 +73,78 @@ var MODULO_CONFIG = {
       .catch(() => null);
   }
 
+  // ---------- quando l'invio non va ----------
+  // Formspree, quando rifiuta un messaggio, dice anche perche'. Chi scrive legge
+  // una spiegazione in parole semplici, nella lingua del sito. Il motivo tecnico
+  // esatto finisce invece nella console del browser (F12, scheda Console): non lo
+  // vede nessun visitatore, ma e' li' che guardi tu se devi capire cosa succede.
+  // Quello che il visitatore ha scritto non viene mai cancellato.
+
+  // Formspree risponde in due modi:
+  //   { "error": "..." }                                    problema del form
+  //   { "errors": [ { "field": "email", "message": "..." } ] }  un campo non va
+  function leggiRifiuto(risposta) {
+    return risposta.text().then(
+      (testo) => {
+        let dati = null;
+        try {
+          dati = JSON.parse(testo);
+        } catch (e) {}
+        const errori = dati && Array.isArray(dati.errors) ? dati.errors : [];
+        const dettaglio =
+          (dati && dati.error) ||
+          errori.map((e) => (e.field ? e.field + ": " : "") + (e.message || e.code)).join("; ") ||
+          testo.trim() ||
+          "(risposta vuota)";
+        const conCampo = errori.find((e) => e.field);
+        return { stato: risposta.status, dettaglio: dettaglio, campo: conCampo ? conCampo.field : null };
+      },
+      () => ({ stato: risposta.status, dettaglio: "(risposta illeggibile)", campo: null })
+    );
+  }
+
+  // Il nome del campo come lo vede il visitatore, gia' nella lingua scelta:
+  // "Telefono", non "telefono" e non "Telefono facoltativo".
+  function etichettaCampo(nome) {
+    if (nome === "privacy") return "Privacy";
+    const campo = modulo.querySelector('[name="' + nome + '"]');
+    const etichetta = campo && campo.id ? modulo.querySelector('label[for="' + campo.id + '"]') : null;
+    return etichetta && etichetta.firstChild ? etichetta.firstChild.textContent.trim() : nome;
+  }
+
+  function spiega(errore) {
+    if (errore.rete) return LINGUA.t(navigator.onLine === false ? "erroreOffline" : "erroreRete");
+    const s = errore.stato;
+    if (errore.campo && (s === 400 || s === 422)) return LINGUA.t("erroreCampo")(etichettaCampo(errore.campo));
+    if (s === 429) return LINGUA.t("erroreTroppi");
+    if (s >= 500) return LINGUA.t("erroreServizio");
+    if (s === 400 || s === 401 || s === 403 || s === 404) return LINGUA.t("erroreConfigurazione");
+    return LINGUA.t("moduloErrore");
+  }
+
+  function annotaInConsole(errore) {
+    const righe = ["[Modulo di contatto] Invio non riuscito."];
+    if (errore.rete) {
+      righe.push("La richiesta non è partita, o il browser ha bloccato la risposta: " + errore.dettaglio);
+    } else {
+      righe.push("Formspree ha risposto HTTP " + errore.stato + ": " + errore.dettaglio);
+    }
+    if (/recaptcha/i.test(errore.dettaglio)) {
+      righe.push("Soluzione: su formspree.io apri il form, vai in Settings e disattiva reCAPTCHA.");
+    }
+    console.warn(righe.join("\n"));
+  }
+
+  function mostraErrore(errore) {
+    annotaInConsole(errore);
+    messaggio(spiega(errore), "errore");
+    // Se il problema e' un campo preciso, il cursore ci va sopra da solo.
+    if (errore.campo) {
+      const campo = modulo.querySelector('[name="' + errore.campo + '"]');
+      if (campo) campo.focus();
+    }
+  }
+
   modulo.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -97,14 +169,21 @@ var MODULO_CONFIG = {
         headers: { Accept: "application/json" },
         body: dati,
       })
-        .then((r) => {
-          if (!r.ok) throw new Error("invio non riuscito");
-          modulo.reset();
-          messaggio(LINGUA.t("moduloOk"), "ok");
-        })
-        .catch(() => {
-          messaggio(LINGUA.t("moduloErrore"), "errore");
-        })
+        .then(
+          (r) => {
+            if (r.ok) {
+              modulo.reset();
+              messaggio(LINGUA.t("moduloOk"), "ok");
+              return;
+            }
+            return leggiRifiuto(r).then(mostraErrore);
+          },
+          // qui si arriva solo se la richiesta non ha avuto nessuna risposta
+          (errore) => mostraErrore({ rete: true, dettaglio: errore.message })
+        )
+        // rete di sicurezza: se qualcosa qui sopra si rompe, il visitatore
+        // vede comunque un messaggio invece di un pulsante bloccato
+        .catch((errore) => mostraErrore({ stato: 0, dettaglio: String(errore) }))
         .then(() => {
           pulsante.disabled = false;
         });
