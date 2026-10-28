@@ -1,0 +1,137 @@
+/* ============ STILE DELLA MOOD BOARD ============
+   Aggiornamento del sito attuale: resta scuro, cambiano carattere e palette.
+   Fondo blu notte della mood board (#05161e) al posto del grigio neutro,
+   rosso Ferrari/Bulls (#c71e23) per pulsanti e accenti, giallo solo nei dettagli.
+   Si carica DOPO style.css e ne sovrascrive solo quello che cambia. */
+
+:root{
+  --bg: #05161e;
+  --bg-alt: #081d27;
+  --card: #0c2531;
+  --border: #1d3a48;
+  --text: #f7f4f3;
+  --text-dim: #a9b6bd;
+  --accent: #ff4a4f;          /* rosso schiarito: leggibile come testo sul blu */
+  --accent-dim: #c71e2333;
+  --accent-pieno: #c71e23;    /* il rosso della mood board, per i pulsanti */
+  --giallo: #f9ef0e;
+  --radius: 6px;
+  --font-heading: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-sub: 'Old Standard TT', Georgia, serif;
+  --font-body: 'Lato', 'Segoe UI', system-ui, sans-serif;
+}
+
+body{ line-height: 1.65; }
+
+/* Titoli: il serif da display non va stretto né in grassetto finto */
+h1, h2, h3{
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+h3{ font-family: var(--font-sub); font-weight: 700; }
+
+/* Etichette di sezione ed eyebrow: corsivo editoriale, niente maiuscolo spaziato */
+.section-label,
+.eyebrow{
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--accent);
+}
+
+section h2{ font-size: clamp(32px, 4.4vw, 48px); }
+
+/* Hero: via la sfumatura. Il resto dell'hero sta nei file hero-*.css */
+.hero{ background: var(--bg); }
+.hero h1{ font-size: clamp(42px, 7vw, 72px); }
+
+/* Pulsanti: angoli netti, niente salto al passaggio del mouse */
+.btn{ border-radius: 3px; letter-spacing: .02em; }
+.btn:hover{ transform: none; }
+.btn-primary:hover{ background: #a3161b; }
+.skip-link{ border-radius: 3px; }
+
+.nav a{ font-size: 15px; }
+
+/* Card */
+.project-card:hover,
+.tool-card:hover,
+.social:hover{ transform: none; }
+
+.project-tag{
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+.project-card h3{ font-family: var(--font-heading); font-weight: 400; font-size: 26px; }
+
+.edu-badge{ border-radius: 3px; }
+.edu-metric strong{ font-weight: 400; font-size: 36px; }
+.edu-bar{ background: var(--bg); border-radius: 2px; }
+.edu-bar-fill{ background: var(--giallo); border-radius: 0; }
+
+.tool-mark{ border-radius: 4px; }
+.nav-toggle{ border-radius: 3px; }
+
+.about-photo::after{ background: linear-gradient(to top, rgba(5,22,30,.6), transparent); }
+
+/* Header semitrasparente sul nuovo blu */
+.site-header{ background: rgba(5,22,30,.9); }
+
+.modulo input[type="text"]:not(.sr-only),
+.modulo input[type="email"],
+.modulo input[type="tel"],
+.modulo textarea{ border-radius: 3px; font-family: var(--font-body); }
+
+.consenso-titolo{ font-family: var(--font-heading); font-weight: 400; font-size: 18px; }
+.lingua-attuale{ border-radius: 3px; }
+
+/* Comparsa allo scroll: solo dissolvenza, senza scivolamento */
+.reveal{ transform: none; }
+
+:focus-visible{ outline-color: var(--giallo); }
+
+/* ============ HERO — LINEA ============
+   La struttura di oggi, ripulita: stesso impianto a colonna singola,
+   titolo grande in DM Serif e una linea gialla sotto il nome. */
+
+.hero{ padding: 130px 0 110px; }
+.hero h1{
+  display: inline-block;
+  padding-bottom: 22px;
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--giallo);
+}
+.hero-text{ font-size: 19px; }
+
+/* Testo selezionato col mouse: giallo della mood board al posto del blu del browser */
+::selection{ background: var(--giallo); color: #05161e; }
+
+/* FOTO "Chi sono": bagliore neon
+   Alone sfumato azzurro a sinistra e rosso a destra, come le luci del setup
+   gaming della mood board. */
+.about-photo{
+  overflow: visible;
+  box-shadow:
+    -14px -6px 38px -10px rgba(0, 200, 255, .30),
+    16px 12px 42px -8px rgba(199, 30, 35, .55);
+}
+.about-photo img{ border-radius: calc(var(--radius) - 1px); }
+.about-photo::after{ border-radius: 0 0 var(--radius) var(--radius); }
+@media (max-width: 720px){
+  .about-photo{
+    box-shadow:
+      -10px -4px 28px -8px rgba(0, 200, 255, .30),
+      12px 10px 30px -6px rgba(199, 30, 35, .55);
+  }
+}
