@@ -162,3 +162,38 @@ Tre indirizzi sono ancora dei segnaposto, perché il sito non ha un dominio:
 - `robots.txt` e `sitemap.xml` — la riga con l'indirizzo del sito.
 
 Cerca `IL-TUO-DOMINIO-QUI` e sostituiscilo con l'indirizzo vero.
+
+## Pubblicare su GitHub (www.kodermaz.com)
+
+La cartella è pronta per diventare un repository GitHub e andare online con GitHub Pages.
+
+| File | A cosa serve |
+| --- | --- |
+| `.gitignore` | Decide cosa sale su GitHub: **solo il sito** (le stesse cose dello script di pubblicazione). Backup, anteprime, appunti `.md`, cartella `seo`, script e vecchi caratteri restano sul computer |
+| `CNAME` | Dice a GitHub Pages che il sito risponde a `www.kodermaz.com` |
+| `.nojekyll` | File vuoto: dice a GitHub di pubblicare i file così come sono, senza rielaborarli |
+
+Il repository deve essere **pubblico** perché GitHub Pages gratuito funzioni: per
+questo il `.gitignore` lascia fuori tutto quello che non è il sito.
+
+### La prima volta
+
+1. Con **GitHub Desktop**: *File → Add local repository* → scegli questa cartella →
+   "create a repository" → *Publish repository* (togli la spunta "Keep this code private").
+2. Su github.com, nel repository: *Settings → Pages* → *Source: Deploy from a branch*,
+   branch `main`, cartella `/ (root)` → *Save*.
+3. Sempre in *Pages*, alla voce *Custom domain* deve comparire `www.kodermaz.com`
+   (lo legge dal file `CNAME`). Quando il controllo è verde, spunta **Enforce HTTPS**.
+4. Dal pannello di chi ti ha venduto il dominio, imposta i DNS:
+   - record `CNAME`: nome `www` → valore `daniele-arch1.github.io`
+   - record `A` per `kodermaz.com` (senza www), quattro righe:
+     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   I DNS possono metterci da pochi minuti a 24 ore.
+
+### Le volte dopo
+
+Modifichi i file, poi in GitHub Desktop scrivi due parole su cosa hai cambiato,
+*Commit to main* e *Push origin*. Dopo un minuto circa il sito online è aggiornato.
+
+Lo script `Prepara il sito da pubblicare` non serve più per GitHub: resta utile solo
+se un giorno carichi il sito su un hosting diverso.

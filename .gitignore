@@ -1,0 +1,36 @@
+# Cosa finisce su GitHub (e quindi online su www.kodermaz.com).
+#
+# Il repository su GitHub Pages e' pubblico: tutto quello che si carica
+# si legge da chiunque. Per questo l'elenco funziona al contrario:
+# la prima riga esclude TUTTO, le righe con "!" riammettono solo il sito.
+# E' lo stesso elenco dello script "Prepara il sito da pubblicare".
+#
+# Restano sul tuo computer: backup, anteprime, appunti .md, cartella seo,
+# script PowerShell, cartella .claude e l'assistente rimosso.
+
+/*
+
+!/.gitignore
+!/.nojekyll
+!/CNAME
+
+!/index.html
+!/privacy.html
+!/404.html
+!/robots.txt
+!/sitemap.xml
+!/favicon.ico
+
+!/css/
+!/js/
+!/img/
+!/fonts/
+
+# Dentro css/: i file delle tre varianti di hero servivano solo alle anteprime
+/css/hero-*.css
+
+# Vecchi caratteri (Sora e Inter) sostituiti da quelli della mood board:
+# restano sul computer e nel backup, ma il sito non li usa piu'
+/css/caratteri.css
+/fonts/sora-*
+/fonts/inter-*
