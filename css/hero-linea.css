@@ -1,0 +1,12 @@
+/* ============ HERO 1 — LINEA ============
+   La struttura di oggi, ripulita: stesso impianto a colonna singola,
+   titolo grande in DM Serif e una linea gialla sotto il nome. */
+
+.hero{ padding: 130px 0 110px; }
+.hero h1{
+  display: inline-block;
+  padding-bottom: 22px;
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--giallo);
+}
+.hero-text{ font-size: 19px; }

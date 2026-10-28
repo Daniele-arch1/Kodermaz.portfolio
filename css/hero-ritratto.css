@@ -1,0 +1,52 @@
+/* ============ HERO 2 — RITRATTO ============
+   Due colonne: testo a sinistra, la tua foto a destra con un blocco rosso
+   sfalsato dietro (come le tavole della mood board). Chi arriva vede subito
+   una persona, non un modello. Su telefono la foto va sopra, più piccola. */
+
+.hero{ padding: 90px 0 100px; }
+
+.hero-inner{
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  column-gap: 64px;
+  align-items: center;
+}
+.hero-inner > *{ grid-column: 1; }
+.hero-testo{ grid-column: 1; grid-row: 1; }
+
+.hero-foto{
+  grid-column: 2;
+  justify-self: end;
+  width: 100%;
+  max-width: 400px;
+  grid-row: 1;
+  position: relative;
+  margin: 0 18px 18px 0;
+}
+.hero-foto::before{
+  content: "";
+  position: absolute;
+  inset: 18px -18px -18px 18px;
+  background: var(--accent-pieno);
+}
+.hero-foto img{
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: 50% 78%;   /* il viso sta nella parte bassa della foto */
+}
+
+.hero h1{ font-size: clamp(42px, 6vw, 68px); }
+.hero h1 + .hero-text{ border-left: 3px solid var(--giallo); padding-left: 20px; }
+
+@media (max-width: 720px){
+  .hero{ padding: 50px 0 70px; }
+  .hero-inner{ grid-template-columns: 1fr; row-gap: 0; }
+  .hero-foto{ grid-column: 1; grid-row: 1; justify-self: start; width: 62%; max-width: 240px; margin-bottom: 44px; }
+  .hero-foto::before{ inset: 12px -12px -12px 12px; }
+  .hero-testo{ grid-row: 2; }
+}
