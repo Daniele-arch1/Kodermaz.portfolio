@@ -117,43 +117,21 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
 /* Testo selezionato col mouse: giallo della mood board al posto del blu del browser */
 ::selection{ background: var(--giallo); color: #05161e; }
 
-/* FOTO "Chi sono": bagliore neon e bollino DK
+/* FOTO "Chi sono": bagliore neon
    Alone sfumato azzurro a sinistra e rosso a destra, come le luci del setup
-   gaming della mood board, più un bollino giallo con il marchio DK. */
+   gaming della mood board. */
 .about-photo{
   overflow: visible;
-  margin: 18px 18px 0 0;
   box-shadow:
     -14px -6px 38px -10px rgba(0, 200, 255, .30),
     16px 12px 42px -8px rgba(199, 30, 35, .55);
 }
 .about-photo img{ border-radius: calc(var(--radius) - 1px); }
 .about-photo::after{ border-radius: 0 0 var(--radius) var(--radius); }
-.about-photo::before{
-  content: "DK" / "";
-  position: absolute;
-  z-index: 2;
-  top: -18px;
-  right: -18px;
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--giallo);
-  color: #05161e;
-  font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 1;
-  transform: rotate(-10deg);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, .35);
-}
 @media (max-width: 720px){
   .about-photo{
-    margin: 14px 14px 0 0;
     box-shadow:
       -10px -4px 28px -8px rgba(0, 200, 255, .30),
       12px 10px 30px -6px rgba(199, 30, 35, .55);
   }
-  .about-photo::before{ top: -14px; right: -14px; width: 52px; height: 52px; font-size: 20px; }
 }
