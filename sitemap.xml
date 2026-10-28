@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  L'elenco delle pagine da mostrare nei risultati di ricerca.
-  C'e' solo la home: privacy.html e 404.html sono marcate "noindex" apposta,
-  quindi non vanno elencate qui.
+  Le pagine da mostrare nei risultati di Google. C'e' solo la vetrina (la home):
+  privacy.html e 404.html sono marcate "noindex" e chiuse in robots.txt.
+  Dentro c'e' anche la foto, cosi' puo' comparire in Google Immagini.
 
-  Da aggiornare a mano in due casi:
-  - quando il sito prende un indirizzo vero (sostituisci IL-TUO-DOMINIO-QUI);
-  - quando cambi i contenuti in modo importante (aggiorna lastmod).
+  Da aggiornare a mano:
+  - se cambia l'indirizzo del sito (oggi https://www.kodermaz.com/, 2 volte);
+  - quando cambi i contenuti in modo importante (aggiorna lastmod, formato AAAA-MM-GG).
 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://IL-TUO-DOMINIO-QUI/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.kodermaz.com/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image>
+      <image:loc>https://www.kodermaz.com/img/daniele.webp</image:loc>
+    </image:image>
   </url>
 </urlset>

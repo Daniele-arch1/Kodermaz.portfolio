@@ -1,13 +1,25 @@
-# Cosa possono guardare i motori di ricerca.
-# Il sito e' piccolo e pubblico: si legge tutto.
+# Cosa possono leggere i motori di ricerca (Google, Bing e gli altri bot).
+#
+# Regola: si legge SOLO la vetrina, cioe' la home (index.html) e i file che
+# servono a disegnarla (stili, script, immagini, caratteri). Senza questi
+# Google vedrebbe la pagina "nuda" e la valuterebbe peggio.
+# Tutto il resto e' chiuso, compresa la pagina privacy (che e' anche
+# marcata noindex) e qualunque file finisse online per sbaglio.
+#
+# Come funziona: "Disallow: /" chiude tutto, le righe "Allow" riaprono solo
+# quello che elencano. Vince sempre la regola piu' precisa.
+# Il simbolo $ vuol dire "esattamente questo indirizzo, niente dopo".
 
 User-agent: *
-Allow: /
+Disallow: /
+Allow: /$
+Allow: /index.html$
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /fonts/
+Allow: /favicon.ico$
 
-# La pagina della privacy e quella di errore chiedono gia' da sole di non
-# finire nei risultati (meta robots noindex), quindi qui non serve altro.
-
-# Appena il sito ha un indirizzo vero, sostituisci IL-TUO-DOMINIO-QUI qui
-# sotto e nel file sitemap.xml. Finche' resta il segnaposto questa riga viene
-# semplicemente ignorata: non fa danni.
-Sitemap: https://IL-TUO-DOMINIO-QUI/sitemap.xml
+# Indirizzo del sito: https://www.kodermaz.com/
+# Se un giorno cambia, aggiornalo qui sotto, in sitemap.xml e in index.html.
+Sitemap: https://www.kodermaz.com/sitemap.xml
