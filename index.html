@@ -42,10 +42,13 @@
      sito ha lo stesso aspetto per tutti. I due file piu' usati partono subito. -->
 <link rel="preload" as="font" type="font/woff2" href="fonts/dm-serif-display-latin-400-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/lato-latin-400-normal.woff2" crossorigin>
-<link rel="stylesheet" href="css/caratteri-moodboard.css">
-<link rel="stylesheet" href="css/style.css">
+<!-- VERSIONE CSS: quando cambi un file .css, cambia il numero dopo ?v= (es. la data)
+     in tutte e tre le pagine. Cosi' i browser scaricano subito il file nuovo
+     invece di tenere quello vecchio in memoria. -->
+<link rel="stylesheet" href="css/caratteri-moodboard.css?v=20261114s">
+<link rel="stylesheet" href="css/style.css?v=20261114s">
 <!-- Font, colori e hero della mood board (Figma, lavoro-CFF): si legge dopo style.css -->
-<link rel="stylesheet" href="css/moodboard.css">
+<link rel="stylesheet" href="css/moodboard.css?v=20261114s">
 <!-- DATI STRUTTURATI: dicono a Google chi sei e come si chiama il sito, in un
      formato che legge al volo. Non si vedono in pagina. Se cambi citta', email o
      profili social, cambiali anche qui. Spiegazione: seo/dati-strutturati.md -->
@@ -122,11 +125,8 @@
   <!-- HERO: modifica qui titolo e frase di apertura -->
   <section id="hero" class="hero">
     <div class="container hero-inner">
-      <p class="eyebrow">Grafica &amp; Digital Marketing</p>
-      <h1>Ciao, sono Daniele Kodermaz.</h1>
-      <p class="hero-text">Ho studiato grafica e comunicazione, adesso creo siti web come questo.
-      Trasformo idee e obiettivi in comunicazioni visive semplici, coerenti e funzionali.
-      Qui trovi i miei lavori e progetti; per informazioni e contatti c'è "Contattami" qui sopra.</p>
+      <h1>Daniele Kodermaz.</h1>
+      <p class="hero-text">Il mio stile è minimal e diretto: non è sempre possibile utilizzarlo, ma la semplicità e la coerenza vincono nel tempo. Per progettazione e creatività uso carta e penna, per il lavoro completo uso <a href="#strumenti">questi strumenti</a>.</p>
       <div class="hero-actions">
         <a href="#progetti" class="btn btn-primary">Vedi i progetti</a>
         <a href="#contatti" class="btn btn-outline">Contattami</a>
@@ -137,8 +137,7 @@
   <!-- CHI SONO: modifica qui la tua bio -->
   <section id="chi-sono" class="about">
     <div class="container">
-      <p class="section-label reveal">01 — Chi sono</p>
-      <h2 class="reveal">Costruisco il mio portfolio, un progetto alla volta.</h2>
+      <h2 class="reveal">Costruisco il mio portfolio un progetto alla volta.</h2>
 
       <div class="about-layout">
 
@@ -213,21 +212,15 @@
   <!-- PROGETTI: aggiungi qui nuovi progetti copiando un .project-card -->
   <section id="progetti" class="projects">
     <div class="container">
-      <p class="section-label reveal">02 — Progetti</p>
       <h2 class="reveal">Cosa ho realizzato</h2>
       <div class="projects-grid">
 
-        <article class="project-card reveal">
-          <div class="project-tag">Rebranding</div>
-          <h3>A.S.D. Revolution Sport</h3>
-          <p>Rebranding di una palestra: analisi delle recensioni dei clienti e sviluppo di circa
-          venti proposte di logo, con l'obiettivo di uno stile pulito e meno aggressivo capace di
-          comunicare che la palestra offre più del semplice fitness. Payoff proposto:
-          <em>"Più di una palestra"</em>.</p>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-tag">Web design</div>
+        <!-- CARD IN EVIDENZA: occupa tutta la riga, immagine a sinistra e testo a destra -->
+        <article class="project-card project-card-featured reveal">
+          <div class="project-img">
+            <img src="img/revolution-sito.webp" alt="Home del sito di A.S.D. Revolution Sport" width="1440" height="733" loading="lazy" decoding="async">
+          </div>
+          <div class="project-body">
           <h3>Sito web per A.S.D. Revolution Sport</h3>
           <p>Il sito della palestra, nato dopo il rebranding: sala pesi e cardio, macchinari,
           corsi ed eventi, orari e indicazioni per arrivare, con le foto degli spazi e i
@@ -238,30 +231,49 @@
                chi lo guarda non perde il portfolio. Se cambi indirizzo, cambia qui. -->
           <a class="project-link" href="https://daniele-arch1.github.io/assd-revolution-0/"
              target="_blank" rel="noopener noreferrer">Visita il sito &rarr;</a>
+          </div>
         </article>
 
         <article class="project-card reveal">
-          <div class="project-tag">Web design</div>
-          <h3>Questo sito</h3>
+          <div class="project-img project-img-logo">
+            <img src="img/revolution-logo.webp" alt="Logo di A.S.D. Revolution Sport" width="800" height="800" loading="lazy" decoding="async">
+          </div>
+          <h3>A.S.D. Revolution Sport</h3>
+          <p>Rebranding di una palestra: analisi delle recensioni dei clienti e sviluppo di circa
+          venti proposte di logo, con l'obiettivo di uno stile pulito e meno aggressivo capace di
+          comunicare che la palestra offre più del semplice fitness. Payoff proposto:
+          <em>"Più di una palestra"</em>.</p>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-img">
+            <img src="img/kodermaz-sito.webp" alt="Home di kodermaz.com" width="1440" height="733" loading="lazy" decoding="async">
+          </div>
+          <h3>kodermaz.com</h3>
           <p>Il portfolio che stai guardando: progettato e costruito da zero, contenuti e struttura
           pensati per comunicare in modo diretto chi sono e cosa so fare.</p>
+
+          <!-- MOODBOARD: palette e caratteri presi dalla tavola Figma (lavoro-CFF) -->
+          <div class="moodboard" aria-label="Moodboard del sito">
+            <p class="moodboard-titolo">Moodboard</p>
+            <ul class="moodboard-colori">
+              <li style="--c:#05161e" title="#05161e"></li>
+              <li style="--c:#f7f4f3" title="#f7f4f3"></li>
+              <li style="--c:#c71e23" title="#c71e23"></li>
+              <li style="--c:#f80311" title="#f80311"></li>
+              <li style="--c:#ebd512" title="#ebd512"></li>
+              <li style="--c:#f9ef0e" title="#f9ef0e"></li>
+            </ul>
+            <ul class="moodboard-font">
+              <li class="mb-titolo">Aa <span>DM Serif Display</span></li>
+              <li class="mb-sotto">Aa <span>Old Standard TT</span></li>
+              <li class="mb-testo">Aa <span>Lato</span></li>
+            </ul>
+          </div>
         </article>
 
-        <article class="project-card reveal">
-          <div class="project-tag">App web</div>
-          <h3>Focus App</h3>
-          <p>Un timer per lavorare a sessioni, senza fronzoli: cicli di lavoro e pause, anello
-          di progresso, statistiche giornaliere e striscia dei giorni consecutivi. Costruita da
-          zero in HTML, CSS e JavaScript, senza librerie.</p>
-
-          <!-- L'app è online su GitHub Pages: si apre in una scheda nuova, così
-               chi la prova non perde il portfolio. Se cambi indirizzo, cambia qui. -->
-          <a class="project-link" href="https://daniele-arch1.github.io/focus-sprint0.2/index.html"
-             target="_blank" rel="noopener noreferrer">Prova l'app &rarr;</a>
-        </article>
 
         <article class="project-card project-card-placeholder reveal">
-          <div class="project-tag">In arrivo</div>
           <h3>Il prossimo progetto</h3>
           <p>Nuovi lavori di grafica e comunicazione in arrivo a breve.</p>
         </article>
@@ -273,80 +285,70 @@
   <!-- STRUMENTI: aggiungi/rimuovi voci copiando un .tool-card -->
   <section id="strumenti" class="tools">
     <div class="container">
-      <p class="section-label reveal">03 — Strumenti</p>
-      <h2 class="reveal">Programmi che utilizzo</h2>
-      <ul class="tools-grid">
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/chatgpt.svg" alt="" width="22" height="22">
-          </span>
+      <div class="tools-head">
+        <h2 class="reveal tools-title">Programmi che utilizzo</h2>
+        <!-- Freccette: spostano la fila di una card; la gestione sta in js/script.js -->
+        <div class="tools-arrows reveal">
+          <button type="button" class="tools-arrow" data-direzione="-1" aria-label="Scorri indietro">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="tools-arrow" data-direzione="1" aria-label="Scorri avanti">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="tools-marquee reveal">
+      <ul class="tools-grid tools-track">
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">ChatGPT</span>
             <span class="tool-role">AI &amp; contenuti</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/claude.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Claude</span>
             <span class="tool-role">AI &amp; contenuti</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/illustrator.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Illustrator</span>
             <span class="tool-role">Grafica vettoriale</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/photoshop.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Photoshop</span>
             <span class="tool-role">Fotoritocco</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/premiere.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Premiere</span>
             <span class="tool-role">Montaggio video</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/figma.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Figma</span>
             <span class="tool-role">UI &amp; web design</span>
           </span>
         </li>
-        <li class="tool-card reveal">
-          <span class="tool-mark">
-            <img src="img/canva.svg" alt="" width="22" height="22">
-          </span>
+        <li class="tool-card">
           <span class="tool-body">
             <span class="tool-name">Canva</span>
             <span class="tool-role">Contenuti social</span>
           </span>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- CONTATTI: modifica qui email e link social -->
   <section id="contatti" class="contact">
     <div class="container contact-inner">
-      <p class="section-label reveal">04 — Contatti</p>
       <h2 class="reveal">Parliamone.</h2>
       <p class="contact-text reveal">Hai un progetto in mente o cerchi una mano con grafica e comunicazione? Scrivimi.</p>
 
@@ -455,10 +457,10 @@
   </div>
 </div>
 
-<script src="js/lingua.js"></script>
+<script src="js/lingua.js?v=20261114s"></script>
 <script src="js/consenso.js"></script>
 <script src="js/corso-gol.js"></script>
 <script src="js/modulo.js"></script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=20261114s"></script>
 </body>
 </html>
