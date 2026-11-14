@@ -225,45 +225,6 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
 }
 .tool-role{ margin-top: 4px; }
 
-/* MOODBOARD nella card "Questo sito": i sei colori e i tre caratteri */
-.moodboard{
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.moodboard-titolo{
-  font-family: var(--font-sub);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--text-dim);
-  margin-bottom: 10px;
-}
-.moodboard-colori{
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
-}
-.moodboard-colori li{
-  aspect-ratio: 1;
-  max-width: 100%;
-  border-radius: 3px;
-  background: var(--c);
-  border: 1px solid rgba(247, 244, 243, .18);
-}
-.moodboard-font{
-  display: grid;
-  gap: 4px;
-  margin-top: 12px;
-}
-.moodboard-font li{ display: grid; grid-template-columns: 40px 1fr; align-items: baseline; font-size: 22px; line-height: 1.2; color: var(--text); }
-.moodboard-font span{
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--text-dim);
-}
-.mb-titolo{ font-family: var(--font-heading); }
-.mb-sotto{ font-family: var(--font-sub); }
-.mb-testo{ font-family: var(--font-body); }
 
 /* BARRA DI SCORRIMENTO: linea gialla di 2px sul bordo basso dell'intestazione */
 .site-header{ position: sticky; }

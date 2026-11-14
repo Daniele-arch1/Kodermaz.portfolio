@@ -52,7 +52,6 @@ var LINGUA = (function () {
       "Rebranding for a gym: analysis of customer reviews and around twenty logo proposals, aiming at a clean, less aggressive style able to say that the gym offers more than just fitness. Proposed payoff:",
     "\"Più di una palestra\"": "\"More than a gym\"",
     "Web design": "Web design",
-    "Moodboard del sito": "Moodboard of the website",
     "Home del sito di A.S.D. Revolution Sport": "Home page of the A.S.D. Revolution Sport website",
     "Logo di A.S.D. Revolution Sport": "A.S.D. Revolution Sport logo",
     "Home di kodermaz.com": "kodermaz.com home page",
