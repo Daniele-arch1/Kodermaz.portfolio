@@ -254,3 +254,110 @@ window.addEventListener(
 
 window.addEventListener("resize", aggiornaVoceAttiva);
 aggiornaVoceAttiva();
+
+
+// ============ BARRA DI SCORRIMENTO ============
+// Una linea gialla sottile sul bordo basso dell'intestazione: si allunga da
+// sinistra man mano che si scorre la pagina, e arriva in fondo alla fine.
+(function () {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const barra = document.createElement("div");
+  barra.className = "barra-scorrimento";
+  barra.setAttribute("aria-hidden", "true");
+  header.appendChild(barra);
+
+  let inAttesa = false;
+  function aggiorna() {
+    inAttesa = false;
+    const totale = document.documentElement.scrollHeight - window.innerHeight;
+    const quota = totale > 0 ? Math.min(1, Math.max(0, window.scrollY / totale)) : 0;
+    barra.style.transform = "scaleX(" + quota + ")";
+  }
+  function chiedi() {
+    if (!inAttesa) { inAttesa = true; requestAnimationFrame(aggiorna); }
+  }
+  window.addEventListener("scroll", chiedi, { passive: true });
+  window.addEventListener("resize", chiedi);
+  aggiorna();
+})();
+
+// ============ STRUMENTI A SCORRIMENTO ============
+// Si duplica la lista delle card: la fila scorre a sinistra e, quando ha
+// percorso meta' della sua lunghezza, riparte da capo; con la copia accodata
+// il giro non si vede. Le copie sono nascoste ai lettori di schermo.
+// - Mouse sulla fascia (o tasto Tab su una card): lo scorrimento si ferma.
+// - Freccette: spostano la fila di una card avanti o indietro, con una
+//   scivolata morbida, e poi lo scorrimento riprende da li'.
+// - Con "riduci movimento" la fila non va da sola: si muove solo con le freccette.
+(function () {
+  const fila = document.querySelector(".tools-track");
+  const fascia = document.querySelector(".tools-marquee");
+  if (!fila || !fascia) return;
+
+  const fermo = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const VELOCITA = 50; // px al secondo
+  const DURATA_PASSO = 450; // ms della scivolata con le freccette
+
+  [...fila.children].forEach((card) => {
+    const copia = card.cloneNode(true);
+    copia.setAttribute("aria-hidden", "true");
+    fila.appendChild(copia);
+  });
+
+  let meta = fila.scrollWidth / 2;
+  window.addEventListener("resize", () => { meta = fila.scrollWidth / 2; });
+
+  // Larghezza di un passo: una card piu' il suo margine
+  const passo = () => {
+    const card = fila.children[0];
+    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(card).marginRight);
+  };
+
+  let pos = 0;
+  let inPausa = false;
+  let scivolata = null; // { da, a, inizio }
+
+  fascia.addEventListener("mouseenter", () => { inPausa = true; });
+  fascia.addEventListener("mouseleave", () => { inPausa = false; });
+  fascia.addEventListener("focusin", () => { inPausa = true; });
+  fascia.addEventListener("focusout", () => { inPausa = false; });
+
+  document.querySelectorAll(".tools-arrow").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const dir = Number(btn.dataset.direzione) || 1;
+      // se una scivolata e' ancora in corso si parte dal suo punto d'arrivo
+      const da = scivolata ? scivolata.a : pos;
+      scivolata = { da: pos, a: da + dir * passo(), inizio: performance.now() };
+    });
+  });
+
+  const morbido = (t) => 1 - Math.pow(1 - t, 3);
+  let prima = performance.now();
+
+  function giro(ora) {
+    const dt = Math.min(ora - prima, 100) / 1000; // niente salti se la scheda era nascosta
+    prima = ora;
+
+    if (scivolata) {
+      const t = Math.min((ora - scivolata.inizio) / DURATA_PASSO, 1);
+      pos = scivolata.da + (scivolata.a - scivolata.da) * morbido(t);
+      if (t === 1) scivolata = null;
+    } else if (!inPausa && !fermo) {
+      pos += VELOCITA * dt;
+    }
+
+    // si resta sempre tra 0 e meta': il punto 0 e il punto "meta'" sono identici
+    if (meta > 0) {
+      const giri = Math.floor(pos / meta);
+      if (giri !== 0) {
+        pos -= giri * meta;
+        if (scivolata) { scivolata.da -= giri * meta; scivolata.a -= giri * meta; }
+      }
+    }
+
+    fila.style.transform = "translateX(" + (-pos) + "px)";
+    requestAnimationFrame(giro);
+  }
+  requestAnimationFrame(giro);
+})();

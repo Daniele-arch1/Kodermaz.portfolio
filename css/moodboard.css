@@ -29,7 +29,9 @@ h1, h2, h3{
   letter-spacing: 0;
   line-height: 1.1;
 }
-h3{ font-family: var(--font-sub); font-weight: 700; }
+/* Tutti i titoli (h1, h2, h3) nel carattere dei titoli della moodboard */
+h3{ font-family: var(--font-heading); font-weight: 400; }
+.edu-card h3{ font-size: 19px; font-weight: 400; }
 
 /* Etichette di sezione ed eyebrow: corsivo editoriale, niente maiuscolo spaziato */
 .section-label,
@@ -50,7 +52,7 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
 .hero h1{ font-size: clamp(42px, 7vw, 72px); }
 
 /* Pulsanti: angoli netti, niente salto al passaggio del mouse */
-.btn{ border-radius: 3px; letter-spacing: .02em; }
+.btn{ border-radius: 8px; letter-spacing: .02em; }
 .btn:hover{ transform: none; }
 .btn-primary:hover{ background: #a3161b; }
 .skip-link{ border-radius: 3px; }
@@ -81,7 +83,7 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
 .edu-bar-fill{ background: var(--giallo); border-radius: 0; }
 
 .tool-mark{ border-radius: 4px; }
-.nav-toggle{ border-radius: 3px; }
+.nav-toggle{ border-radius: 8px; }
 
 .about-photo::after{ background: linear-gradient(to top, rgba(5,22,30,.6), transparent); }
 
@@ -112,7 +114,13 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
   margin-bottom: 28px;
   border-bottom: 3px solid var(--giallo);
 }
-.hero-text{ font-size: 19px; }
+.hero-text{ font-size: 19px; max-width: 620px; }
+
+/* Il blocco dell'hero parte dallo stesso margine del logo e delle altre
+   sezioni (prima era largo 680px e centrato, quindi spostato a destra).
+   Il titolo va a capo in righe di lunghezza simile. */
+.hero-inner{ max-width: var(--max-width); }
+.hero h1{ text-wrap: balance; }
 
 /* Testo selezionato col mouse: giallo della mood board al posto del blu del browser */
 ::selection{ background: var(--giallo); color: #05161e; }
@@ -135,3 +143,302 @@ section h2{ font-size: clamp(32px, 4.4vw, 48px); }
       12px 10px 30px -6px rgba(199, 30, 35, .55);
   }
 }
+
+/* HOVER DEI PULSANTI
+   Pulsante rosso: una barra gialla cresce da sinistra lungo il bordo basso.
+   Pulsante bordato: si riempie di blu chiaro da sinistra verso destra.
+   Chi ha chiesto meno animazioni vede solo il cambio finale (vedi style.css). */
+.btn{ position: relative; overflow: hidden; isolation: isolate; }
+.btn-primary::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: var(--giallo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.btn-primary:hover::after,
+.btn-primary:focus-visible::after{ transform: scaleX(1); }
+
+.btn-outline{
+  background-image: linear-gradient(var(--card), var(--card));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size .35s cubic-bezier(.2, .7, .2, 1), border-color .2s ease;
+}
+.btn-outline:hover,
+.btn-outline:focus-visible{ background-size: 100% 100%; border-color: var(--giallo); }
+
+/* INTERRUTTORE LINGUA IT / EN (footer e barra privacy)
+   La pallina rossa scorre sotto la lingua attiva. */
+.lingua-switch{
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 3px;
+  min-height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  cursor: pointer;
+}
+.lingua-switch:hover{ border-color: var(--accent); }
+.lingua-switch-pallina{
+  position: absolute;
+  top: 3px; bottom: 3px; left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--accent-pieno);
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+.lingua-switch[data-lingua="en"] .lingua-switch-pallina{ transform: translateX(100%); }
+.lingua-switch-voce{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 11px;
+  color: var(--text-dim);
+  transition: color .3s ease;
+}
+.lingua-switch-voce .bandiera{ width: 16px; height: 12px; }
+.lingua-switch[data-lingua="it"] .lingua-switch-voce[data-lingua="it"],
+.lingua-switch[data-lingua="en"] .lingua-switch-voce[data-lingua="en"]{ color: #ffffff; }
+@media (pointer: coarse){ .lingua-switch{ min-height: 44px; } }
+
+/* STRUMENTI: niente icone, il nome del programma nel carattere dei titoli
+   della mood board (DM Serif Display) */
+.tool-card{ padding: 18px 20px; }
+.tool-name{
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.15;
+}
+.tool-role{ margin-top: 4px; }
+
+/* MOODBOARD nella card "Questo sito": i sei colori e i tre caratteri */
+.moodboard{
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.moodboard-titolo{
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.moodboard-colori{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.moodboard-colori li{
+  aspect-ratio: 1;
+  max-width: 100%;
+  border-radius: 3px;
+  background: var(--c);
+  border: 1px solid rgba(247, 244, 243, .18);
+}
+.moodboard-font{
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+.moodboard-font li{ display: grid; grid-template-columns: 40px 1fr; align-items: baseline; font-size: 22px; line-height: 1.2; color: var(--text); }
+.moodboard-font span{
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.mb-titolo{ font-family: var(--font-heading); }
+.mb-sotto{ font-family: var(--font-sub); }
+.mb-testo{ font-family: var(--font-body); }
+
+/* BARRA DI SCORRIMENTO: linea gialla di 2px sul bordo basso dell'intestazione */
+.site-header{ position: sticky; }
+.barra-scorrimento{
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--giallo);
+  opacity: .85;
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Link "questi strumenti" nel testo dell'hero */
+.hero-text a{
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--giallo);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color .2s ease;
+}
+.hero-text a:hover{ color: var(--giallo); }
+
+/* HOVER CARD STRUMENTI: una barra rossa sale lungo il lato sinistro
+   e il nome del programma si sposta di poco a destra */
+.tool-card{ position: relative; overflow: hidden; }
+.tool-card:hover{ border-color: var(--border); }
+.tool-card::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+.tool-card:hover::before{ transform: scaleY(1); }
+.tool-name, .tool-role{ transition: transform .3s cubic-bezier(.2, .7, .2, 1), color .3s ease; }
+.tool-card:hover .tool-name{ transform: translateX(6px); color: var(--accent); }
+.tool-card:hover .tool-role{ transform: translateX(6px); }
+.tool-name, .tool-role{ display: block; }
+
+/* CONTATTI: stessi bordi delle altre sezioni (larghezza piena del contenitore).
+   Su desktop titolo e testo a sinistra, modulo a destra; su telefono uno sotto l'altro. */
+.contact-inner{
+  max-width: var(--max-width);
+  text-align: left;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 64px;
+  align-items: start;
+}
+.contact-inner > *{ grid-column: 1; }
+.contact-inner h2{ margin: 0 0 16px; }
+.contact-text{ margin-bottom: 20px; }
+.contact-box{ grid-column: 2; grid-row: 1 / span 3; max-width: none; margin: 0; }
+.contact-alt{ margin-top: 0; }
+@media (max-width: 860px){
+  .contact-inner{ grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .contact-box{ grid-column: 1; grid-row: auto; margin-bottom: 18px; }
+  .contact-alt{ order: 2; }
+}
+
+/* HOVER CARD PROGETTI: stessa barra rossa delle card strumenti.
+   Se la card ha un'immagine (.project-img), si ingrandisce di poco. */
+.project-card{ position: relative; overflow: hidden; }
+.project-card:hover{ border-color: var(--border); transform: none; }
+/* Al passaggio la card cresce di circa 8px in larghezza: la scala e' diversa
+   per la card in evidenza (larga) e per quelle piccole, cosi' l'aumento in px
+   resta simile. La card segnaposto resta ferma. */
+.project-card,
+.project-card.reveal{ transition: border-color .15s ease, transform .3s cubic-bezier(.2, .7, .2, 1), opacity .5s ease; }
+.project-card:not(.project-card-placeholder):hover{ transform: scale(1.025); }
+/* Angoli come le card dei programmi (12px); l'immagine dentro un po' meno,
+   cosi' segue la curva della card */
+.project-card{ border-radius: 12px; }
+.project-card .project-img{ border-radius: 8px; }
+.project-card.project-card-featured:hover{ transform: scale(1.008); }
+.project-card::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+  z-index: 1;
+}
+.project-card:hover::before{ transform: scaleY(1); }
+.project-card h3{ transition: color .3s ease; }
+.project-card:hover h3{ color: var(--accent); }
+.project-card-placeholder::before{ display: none; }
+.project-card-placeholder:hover h3{ color: inherit; }
+.project-img{ overflow: hidden; border-radius: 4px; }
+.project-img img{ display: block; width: 100%; height: auto; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.project-card:hover .project-img img{ transform: scale(1.04); }
+
+/* IMMAGINI DEI PROGETTI e CARD IN EVIDENZA */
+.project-img{ margin-bottom: 18px; aspect-ratio: 16 / 10; background: var(--bg); }
+.project-img img{ width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.project-img-logo{ background: #f7f4f3; display: grid; place-items: center; }
+.project-img-logo img{ width: 62%; height: auto; object-fit: contain; }
+.project-card-featured{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.project-card-featured .project-img{ margin-bottom: 0; aspect-ratio: 1440 / 733; }
+.project-card-featured h3{ font-size: 32px; }
+@media (max-width: 860px){
+  .project-card-featured{ grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+
+.project-card-placeholder{ align-self: start; }
+
+/* STRUMENTI A SCORRIMENTO: le card stanno su una sola riga e scorrono da sole
+   verso sinistra. La lista viene duplicata da js/script.js, cosi' quando la
+   prima meta' esce dallo schermo la seconda e' gia' al suo posto e il giro
+   ricomincia senza scatti. Passando col mouse sulla fascia lo scorrimento si
+   ferma. Le card mantengono la larghezza di prima (circa 262px). */
+.tools-title{ letter-spacing: .02em; }
+.tools-marquee{
+  overflow: hidden;
+  margin-top: 12px;
+  /* i bordi della fascia sfumano, cosi' le card entrano ed escono morbide */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+/* Lo scorrimento lo muove js/script.js (serve per le freccette): qui solo
+   la fila. Il JS si ferma quando il mouse e' sulla fascia. */
+.tools-grid.tools-track{
+  display: flex;
+  width: max-content;
+  gap: 0;
+  margin-top: 0;
+  padding: 4px 0;
+  will-change: transform;
+}
+.tools-track > .tool-card{
+  /* angoli piu' tondi: circa il 13% dell'altezza della card (~91px).
+     In px e non in %, cosi' gli angoli restano tondi e non ovali */
+  border-radius: 12px;
+  flex: 0 0 262px;
+  margin-right: 16px; /* margine al posto del gap: le due meta' restano identiche */
+}
+
+/* Titolo a sinistra, freccette a destra sulla stessa riga */
+.tools-head{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.tools-arrows{ display: flex; gap: 8px; margin-bottom: 20px; }
+.tools-arrow{
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.tools-arrow:hover{ border-color: var(--accent); color: var(--accent); }
+.tools-arrow:active{ transform: scale(.94); }
+.tools-arrow:focus-visible{ outline: 2px solid var(--giallo); outline-offset: 2px; }

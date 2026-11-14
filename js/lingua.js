@@ -20,14 +20,13 @@ var LINGUA = (function () {
 
     // hero
     "Grafica & Digital Marketing": "Graphic Design & Digital Marketing",
-    "Ciao, sono Daniele Kodermaz.": "Hi, I'm Daniele Kodermaz.",
-    "Ho studiato grafica e comunicazione, adesso creo siti web come questo. Trasformo idee e obiettivi in comunicazioni visive semplici, coerenti e funzionali. Qui trovi i miei lavori e progetti; per informazioni e contatti c'è \"Contattami\" qui sopra.":
-      "I studied graphic design and communication, and now I build websites like this one. I turn ideas and goals into visual communication that is simple, consistent and effective. Here you'll find my work and projects; for information and contacts use \"Contact me\" above.",
+    "Il mio stile è minimal e diretto: non è sempre possibile utilizzarlo, ma la semplicità e la coerenza vincono nel tempo. Per progettazione e creatività uso carta e penna, per il lavoro completo uso":
+      "My style is minimal and direct: it isn't always possible to use it, but simplicity and consistency win over time. For design and creative work I use pen and paper, and for the finished work I use",
+    "questi strumenti": "these tools",
     "Vedi i progetti": "See the projects",
 
     // chi sono
-    "01 — Chi sono": "01 — About me",
-    "Costruisco il mio portfolio, un progetto alla volta.": "Building my portfolio, one project at a time.",
+    "Costruisco il mio portfolio un progetto alla volta.": "Building my portfolio one project at a time.",
     "Mi presento, sono Daniele Kodermaz. La mia carriera da graphic designer inizia con lo studio di grafica e comunicazione. Successivamente ho fatto qualche progetto su richiesta per conoscenti. La mia presenza sul web inizia con l'apertura di un account per fare live streaming: durante quel periodo ho creato grafiche per il mio canale. Nel 2025 ho partecipato a un corso online per la progettazione di siti web. Attualmente sto sperimentando il mondo relativo all'IA per facilitare il mio lavoro.":
       "Let me introduce myself: I'm Daniele Kodermaz. My career as a graphic designer began with studying graphic design and communication. After that I did a few projects on request for people I know. My presence online started when I opened a live streaming account: during that time I created the graphics for my channel. In 2025 I took an online course in web design. Right now I'm exploring what AI can do to support my work.",
     "Sto costruendo il mio portfolio attraverso progetti pratici, sperimentazione e formazione continua. Il mio obiettivo è lavorare in un'azienda nel mio ambito di interesse e continuare a sperimentare e imparare.":
@@ -47,18 +46,18 @@ var LINGUA = (function () {
     "Ore completate del corso GOL": "Hours completed of the GOL course",
 
     // progetti
-    "02 — Progetti": "02 — Projects",
     "Cosa ho realizzato": "What I've made",
-    "Rebranding": "Rebranding",
     "A.S.D. Revolution Sport": "A.S.D. Revolution Sport",
     "Rebranding di una palestra: analisi delle recensioni dei clienti e sviluppo di circa venti proposte di logo, con l'obiettivo di uno stile pulito e meno aggressivo capace di comunicare che la palestra offre più del semplice fitness. Payoff proposto:":
       "Rebranding for a gym: analysis of customer reviews and around twenty logo proposals, aiming at a clean, less aggressive style able to say that the gym offers more than just fitness. Proposed payoff:",
     "\"Più di una palestra\"": "\"More than a gym\"",
     "Web design": "Web design",
-    "Questo sito": "This website",
+    "Moodboard del sito": "Moodboard of the website",
+    "Home del sito di A.S.D. Revolution Sport": "Home page of the A.S.D. Revolution Sport website",
+    "Logo di A.S.D. Revolution Sport": "A.S.D. Revolution Sport logo",
+    "Home di kodermaz.com": "kodermaz.com home page",
     "Il portfolio che stai guardando: progettato e costruito da zero, contenuti e struttura pensati per comunicare in modo diretto chi sono e cosa so fare.":
       "The portfolio you're looking at: designed and built from scratch, with content and structure meant to say plainly who I am and what I can do.",
-    "App web": "Web app",
     "Focus App": "Focus App",
     "Un timer per lavorare a sessioni, senza fronzoli: cicli di lavoro e pause, anello di progresso, statistiche giornaliere e striscia dei giorni consecutivi. Costruita da zero in HTML, CSS e JavaScript, senza librerie.":
       "A no-frills timer for working in sessions: work and break cycles, a progress ring, daily statistics and a streak of consecutive days. Built from scratch in HTML, CSS and JavaScript, with no libraries.",
@@ -68,8 +67,9 @@ var LINGUA = (function () {
     "Nuovi lavori di grafica e comunicazione in arrivo a breve.": "New design and communication work coming soon.",
 
     // strumenti
-    "03 — Strumenti": "03 — Tools",
     "Programmi che utilizzo": "Software I use",
+    "Scorri indietro": "Scroll back",
+    "Scorri avanti": "Scroll forward",
     "AI & contenuti": "AI & content",
     "Grafica vettoriale": "Vector graphics",
     "Fotoritocco": "Photo editing",
@@ -78,7 +78,6 @@ var LINGUA = (function () {
     "Contenuti social": "Social content",
 
     // contatti e modulo
-    "04 — Contatti": "04 — Contact",
     "Parliamone.": "Let's talk.",
     "Hai un progetto in mente o cerchi una mano con grafica e comunicazione? Scrivimi.":
       "Got a project in mind, or need a hand with design and communication? Write to me.",
@@ -297,7 +296,7 @@ var LINGUA = (function () {
     document.dispatchEvent(new CustomEvent("linguacambiata", { detail: lingua }));
   }
 
-  // ---------- selettore con bandiera ----------
+  // ---------- bandiere ----------
   // Bandiere disegnate invece delle emoji: su Windows le emoji delle bandiere
   // non esistono e comparirebbero due lettere al loro posto.
   const BANDIERE = {
@@ -316,55 +315,32 @@ var LINGUA = (function () {
       '<path d="M10.5 0v15M0 7.5h21" stroke="#c8102e" stroke-width="3"/>' +
       "</svg>",
   };
-  const NOMI = { it: "Italiano", en: "English" };
-
+  // ---------- interruttore IT / EN ----------
+  // Un solo pulsante: un clic passa dall'italiano all'inglese e viceversa.
+  // La pallina scorre sotto la lingua attiva; role="switch" lo fa leggere
+  // come un interruttore anche ai lettori di schermo.
   function costruisciSelettore(contenitore) {
     contenitore.innerHTML = "";
     contenitore.classList.add("selettore-lingua");
 
-    const bottone = document.createElement("button");
-    bottone.type = "button";
-    bottone.className = "lingua-attuale";
-    bottone.setAttribute("aria-expanded", "false");
-    bottone.setAttribute("aria-haspopup", "true");
+    const interruttore = document.createElement("button");
+    interruttore.type = "button";
+    interruttore.className = "lingua-switch";
+    interruttore.setAttribute("role", "switch");
+    interruttore.innerHTML =
+      '<span class="lingua-switch-pallina" aria-hidden="true"></span>' +
+      '<span class="lingua-switch-voce" data-lingua="it" aria-hidden="true">' + BANDIERE.it + "IT</span>" +
+      '<span class="lingua-switch-voce" data-lingua="en" aria-hidden="true">' + BANDIERE.en + "EN</span>";
+    interruttore.addEventListener("click", () => applica(attuale === "it" ? "en" : "it"));
 
-    const tendina = document.createElement("div");
-    tendina.className = "lingua-tendina";
-    tendina.hidden = true;
-
-    ["it", "en"].forEach((codice) => {
-      const voce = document.createElement("button");
-      voce.type = "button";
-      voce.className = "lingua-voce";
-      voce.dataset.lingua = codice;
-      voce.innerHTML = BANDIERE[codice] + " " + codice.toUpperCase() + " · " + NOMI[codice];
-      voce.addEventListener("click", () => {
-        applica(codice);
-        tendina.hidden = true;
-        bottone.setAttribute("aria-expanded", "false");
-      });
-      tendina.appendChild(voce);
-    });
-
-    bottone.addEventListener("click", () => {
-      const aperta = tendina.hidden;
-      document.querySelectorAll(".lingua-tendina").forEach((t) => (t.hidden = true));
-      document.querySelectorAll(".lingua-attuale").forEach((b) => b.setAttribute("aria-expanded", "false"));
-      tendina.hidden = !aperta;
-      bottone.setAttribute("aria-expanded", String(aperta));
-    });
-
-    contenitore.appendChild(bottone);
-    contenitore.appendChild(tendina);
+    contenitore.appendChild(interruttore);
   }
 
   function aggiornaSelettori() {
-    document.querySelectorAll(".lingua-attuale").forEach((b) => {
-      b.innerHTML = BANDIERE[attuale] + " " + attuale.toUpperCase();
-      b.setAttribute("aria-label", (attuale === "it" ? "Lingua: Italiano" : "Language: English"));
-    });
-    document.querySelectorAll(".lingua-voce").forEach((v) => {
-      v.classList.toggle("is-scelta", v.dataset.lingua === attuale);
+    document.querySelectorAll(".lingua-switch").forEach((b) => {
+      b.setAttribute("aria-checked", String(attuale === "en"));
+      b.setAttribute("aria-label", attuale === "it" ? "Lingua: italiano. Passa all'inglese" : "Language: English. Switch to Italian");
+      b.dataset.lingua = attuale;
     });
   }
 
@@ -374,11 +350,6 @@ var LINGUA = (function () {
     const scelta = leggi();
     if (scelta !== "it") applica(scelta, false);
 
-    document.addEventListener("click", (e) => {
-      if (e.target.closest(".selettore-lingua")) return;
-      document.querySelectorAll(".lingua-tendina").forEach((t) => (t.hidden = true));
-      document.querySelectorAll(".lingua-attuale").forEach((b) => b.setAttribute("aria-expanded", "false"));
-    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvia);
